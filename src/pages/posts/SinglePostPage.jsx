@@ -26,12 +26,24 @@ export default function SinglePostPage() {
 
   return (
     <div className='container'>
-      <h2>
-        <span className={css.title}>{author}</span> - {title}
+      <h2 className={css.postTitleSection}>
+        <span className={css.postAuthor}>{author}</span> -{' '}
+        <span className={css.postTitle}>{title}</span>
       </h2>
-      <p>{body}</p>
-      <p>{tags}</p>
-      <h3>{date}</h3>
+      <p className={css.postText}>{body}</p>
+      <div className={css.postOtherSection}>
+        <div className={css.postImageBlock}>
+          <img
+            className={css.postImage}
+            src={image}
+            alt={`${author} - ${title}`}
+          />
+        </div>
+        <div className={css.postOtherInfo}>
+          <h3 className={css.postDate}>{date}</h3>
+          <p className={css.postTags}>{tags}</p>
+        </div>
+      </div>
     </div>
   );
 }
