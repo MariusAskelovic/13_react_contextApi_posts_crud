@@ -1,0 +1,13 @@
+.postsLi {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  max-width: 600px;
+}
+.postsTitle {
+  color: lightslategrey;
+}
+.postsAuthor {
+  font-size: 28px;
+}

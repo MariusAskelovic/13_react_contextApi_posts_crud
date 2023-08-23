@@ -25,8 +25,13 @@ export default function SinglePostPage() {
   }, []);
 
   return (
-    <div>
-      <p className='bigFont'>{title}</p>
+    <div className='container'>
+      <h2>
+        <span className={css.title}>{author}</span> - {title}
+      </h2>
+      <p>{body}</p>
+      <p>{tags}</p>
+      <h3>{date}</h3>
     </div>
   );
 }

@@ -1,5 +1,11 @@
 // situos komponentus mes turim generuoti PostsPage kaip nuorodas
 // atvaizduoti title ir autoriu
-export default function SinglePostLink() {
-  return <div>SinglePostLink</div>;
+import css from './SinglePostLink.module.css';
+export default function SinglePostLink(props) {
+  return (
+    <li className={css.postsLi}>
+      <h4 className={css.postsTitle}>{props.title}</h4>
+      <p className={css.postsAuthor}>{props.author}</p>
+    </li>
+  );
 }
