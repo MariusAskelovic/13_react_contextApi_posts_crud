@@ -17,7 +17,7 @@ export default function SinglePostPage() {
     tags: [],
   });
   console.log('url ===', url);
-  const { id, image, title, body, author, tags, date } = post;
+  const { image, title, body, author, tags, date } = post;
 
   useEffect(() => {
     axios
