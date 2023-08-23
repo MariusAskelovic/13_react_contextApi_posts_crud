@@ -1,10 +1,32 @@
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .postTitleSection {
+  margin-top: 40px;
+  box-shadow: 0 0 20px rgba(92, 92, 92, 0.132);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  position: relative;
+  width: 80%;
 }
 .postAuthor {
+  font-size: 46px;
+  color: slateblue;
+  padding-left: 40px;
 }
 .postTitle {
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .postText {
+  text-align: center;
+  font-size: 12px;
+  width: 80%;
 }
 .postOtherSection {
 }

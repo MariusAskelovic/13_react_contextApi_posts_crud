@@ -14,22 +14,27 @@ export default function SinglePostPage() {
   console.log('params ===', params);
   const url = 'http://localhost:5000/posts/' + params.postId;
   const [post, setPost] = useState([]);
+  const [joinTags, setJoinTags] = useState([]);
   console.log('url ===', url);
-  const { id, image, title, body, author, tags, date } = post;
+  const { id, image, title, body, author, date } = post;
+  const joinedTags = joinTags.join(', ');
 
   useEffect(() => {
     axios
       .get(url)
-      .then((resp) => setPost(resp.data))
+      .then((resp) => {
+        setPost(resp.data);
+        setJoinTags(resp.data.tags);
+      })
       .catch(console.warn);
   }, []);
 
   return (
-    <div className='container'>
-      <h2 className={css.postTitleSection}>
-        <span className={css.postAuthor}>{author}</span> -{' '}
-        <span className={css.postTitle}>{title}</span>
-      </h2>
+    <div className={`container ${css.postContainer}`}>
+      <div className={css.postTitleSection}>
+        <h3 className={css.postAuthor}>{author}</h3>
+        <h3 className={css.postTitle}>{title}</h3>
+      </div>
       <p className={css.postText}>{body}</p>
       <div className={css.postOtherSection}>
         <div className={css.postImageBlock}>
@@ -41,7 +46,7 @@ export default function SinglePostPage() {
         </div>
         <div className={css.postOtherInfo}>
           <h3 className={css.postDate}>{date}</h3>
-          <p className={css.postTags}>{tags}</p>
+          <p className={css.postTags}>{joinedTags}</p>
         </div>
       </div>
     </div>
