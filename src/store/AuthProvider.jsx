@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 export const AuthContext = createContext({
   email: '',
   token: '',
-  isUserLoggedIn: false,
+  isLoggedIn: false,
   // eslint-disable-next-line no-unused-vars
   login(gotEmail, gotToken) {},
   logout() {},
@@ -22,7 +22,10 @@ export default function AuthProvider(props) {
     setEmail(gotEmail);
   }
 
-  function logout() {}
+  function logout() {
+    setEmail('');
+    setToken('');
+  }
 
   const ctx = {
     token: token,

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../../store/AuthProvider';
 
 export default function LoginForm(props) {
-  const ctx = useAuth;
+  const ctx = useAuth();
   const formik = useFormik({
     initialValues: {
       email: 'emma.wong@reqres.in',
@@ -40,19 +40,24 @@ export default function LoginForm(props) {
         // jei gavom token tai pavyko prisiloginti
         // atspausdinti token
         console.log('ats.data.token ===', ats.data.token);
-        // naviguosim i home arba vip page
+
         if (ats.data.token) {
           console.log('Login pavyko');
+          // kviesti tevineme elemente esancia funkcija
           ctx.login(formik.values.email, ats.data.token);
           props.onSekme();
         }
       })
       .catch((error) => {
+        // prisiloginti nepavyko
         console.warn('ivyko klaida:', error);
         console.log('error.response.data.error ===', error.response.data.error);
+        // formik.errors.email = error.response.data.error;
+        // formik.setErrors({ email: error.response.data.error });
         formik.setErrors({ email: 'Email or password not found' });
       });
   }
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -64,7 +69,7 @@ export default function LoginForm(props) {
           placeholder='Email'
           id='email'
         />
-        {formik.touched.email && formik.errors.email && (
+        {formik.errors.email && formik.touched.email && (
           <p className='error'>{formik.errors.email}</p>
         )}
         <input

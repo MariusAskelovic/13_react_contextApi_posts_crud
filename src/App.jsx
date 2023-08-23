@@ -5,17 +5,18 @@ import PostsPage from './pages/posts/PostsPage';
 import Header from './components/layout/Header';
 import { useAuth } from './store/AuthProvider';
 import LoginPage from './pages/auth/LoginPage';
+import NotFound from './pages/NotFound';
 
 export default function App() {
-  const ctx = useAuth();
-  console.log('ctx ===', ctx);
+  const { isLoggedIn } = useAuth();
   return (
     <div>
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/posts' element={<PostsPage />} />
-        <Route path='/login' element={<LoginPage />} />
+        {isLoggedIn && <Route path='/posts' element={<PostsPage />} />}
+        {!isLoggedIn && <Route path='/login' element={<LoginPage />} />}
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );
