@@ -15,6 +15,9 @@ export default function Header() {
           <NavLink className={css.navLink} to={'/posts'}>
             Posts
           </NavLink>
+          <NavLink className={css.navLink} to={'/login'}>
+            Login
+          </NavLink>
         </nav>
       </div>
     </header>
