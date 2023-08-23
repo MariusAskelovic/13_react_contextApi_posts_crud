@@ -7,36 +7,70 @@
   margin-top: 40px;
   box-shadow: 0 0 20px rgba(92, 92, 92, 0.132);
   border-radius: 10px;
-  padding: 20px;
+  padding: 0 20px;
   display: flex;
   position: relative;
-  width: 80%;
+  width: 90%;
+  height: 100px;
+  background-color: rgb(161, 161, 161);
 }
 .postAuthor {
-  font-size: 46px;
+  font-size: 70px;
   color: slateblue;
   padding-left: 40px;
 }
 .postTitle {
-  font-size: 24px;
+  font-size: 36px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 40px;
+  left: 20px;
+  mix-blend-mode: overlay;
+  color: rgb(221, 221, 221);
 }
 .postText {
   text-align: center;
-  font-size: 12px;
-  width: 80%;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 10px;
+  color: gray;
+  padding: 20px 10%;
 }
 .postOtherSection {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% auto;
+  align-items: center;
+  gap: 20px;
 }
 .postImageBlock {
+  /* width: 100%; */
+  height: 200px;
+  overflow: hidden;
 }
 .postImage {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+  border-radius: 40px;
 }
 .postOtherInfo {
+  background-color: #ccc;
+  height: 100%;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 20px;
 }
 .postDate {
+  color: chocolate;
+  font-size: 18px;
 }
 .postTags {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-end;
+}
+.postTag {
+  padding: 4px 8px;
+  background-color: white;
 }

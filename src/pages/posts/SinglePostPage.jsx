@@ -13,18 +13,17 @@ export default function SinglePostPage() {
   const params = useParams();
   console.log('params ===', params);
   const url = 'http://localhost:5000/posts/' + params.postId;
-  const [post, setPost] = useState([]);
-  const [joinTags, setJoinTags] = useState([]);
+  const [post, setPost] = useState({
+    tags: [],
+  });
   console.log('url ===', url);
-  const { id, image, title, body, author, date } = post;
-  const joinedTags = joinTags.join(', ');
+  const { id, image, title, body, author, tags, date } = post;
 
   useEffect(() => {
     axios
       .get(url)
       .then((resp) => {
         setPost(resp.data);
-        setJoinTags(resp.data.tags);
       })
       .catch(console.warn);
   }, []);
@@ -32,8 +31,8 @@ export default function SinglePostPage() {
   return (
     <div className={`container ${css.postContainer}`}>
       <div className={css.postTitleSection}>
-        <h3 className={css.postAuthor}>{author}</h3>
         <h3 className={css.postTitle}>{title}</h3>
+        <h3 className={css.postAuthor}>{author}</h3>
       </div>
       <p className={css.postText}>{body}</p>
       <div className={css.postOtherSection}>
@@ -46,7 +45,14 @@ export default function SinglePostPage() {
         </div>
         <div className={css.postOtherInfo}>
           <h3 className={css.postDate}>{date}</h3>
-          <p className={css.postTags}>{joinedTags}</p>
+          {/* <p className={css.postTags}>{tags?.join(', ')}</p> */}
+          <div className={css.postTags}>
+            {tags.map((tObj) => (
+              <p className={css.postTag} key={tObj}>
+                {tObj}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
