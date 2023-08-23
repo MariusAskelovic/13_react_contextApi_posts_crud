@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const AuthContext = createContext({
   email: '',
   token: '',
   isUserLoggedIn: false,
   // eslint-disable-next-line no-unused-vars
-  login(email) {},
+  login(gotEmail, gotToken) {},
   logout() {},
 });
 
@@ -18,7 +17,10 @@ export default function AuthProvider(props) {
 
   const isLoggedIn = !!token;
 
-  function login() {}
+  function login(gotEmail, gotToken) {
+    setToken(gotToken);
+    setEmail(gotEmail);
+  }
 
   function logout() {}
 
@@ -29,16 +31,7 @@ export default function AuthProvider(props) {
     logout: logout,
     isLoggedIn: isLoggedIn,
   };
-  // const ctx2 = {
-  //   token,
-  //   email,
-  //   login,
-  //   logout,
-  //   isLoggedIn,
-  // };
-  // ctx === ctx2, jeigu A = B galima rasyti viena zodi
 
-  ctx.login();
   return (
     <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>
   );
@@ -46,10 +39,8 @@ export default function AuthProvider(props) {
 
 // custom hook
 // turi prasideti zodeliu 'use'
-// toliau CamelCase jo pavadinimas
-
 // tiesiog funkcija kuri gali naudoti hooks
-// daznai grazina reiksme
+// daznai grazina reikme
 export function useAuth() {
   return useContext(AuthContext);
 }

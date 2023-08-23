@@ -1,8 +1,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useAuth } from '../../store/AuthProvider';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const ctx = useAuth;
   const formik = useFormik({
     initialValues: {
       email: 'emma.wong@reqres.in',
@@ -41,19 +43,13 @@ export default function LoginForm() {
         // naviguosim i home arba vip page
         if (ats.data.token) {
           console.log('Login pavyko');
-          setLoginSuccess(true);
-          ctx.login(formik.values.email);
-          //   replace: true pakeicia psl, todel spaudziant back
-          //   grysim ne i Login, o i pries tai
-          navigate('/vip', { replace: true });
+          ctx.login(formik.values.email, ats.data.token);
+          props.onSekme();
         }
       })
       .catch((error) => {
-        // prisiloginti nepavyko
         console.warn('ivyko klaida:', error);
         console.log('error.response.data.error ===', error.response.data.error);
-        // formik.errors.email = error.response.data.error;
-        // formik.setErrors({ email: error.response.data.error });
         formik.setErrors({ email: 'Email or password not found' });
       });
   }
