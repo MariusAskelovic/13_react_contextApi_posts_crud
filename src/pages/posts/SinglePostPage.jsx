@@ -1,8 +1,9 @@
 // cia mes graziai atvaizuosim visa info esancia posto objekte
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import css from './SinglePostPage.module.css';
+import { useAuth } from '../../store/AuthProvider';
 
 export default function SinglePostPage() {
   // pasiimti dinamine adreso dali (parametra) tai yra post id
@@ -18,7 +19,7 @@ export default function SinglePostPage() {
   });
   console.log('url ===', url);
   const { image, title, body, author, tags, date } = post;
-
+  const { logout } = useAuth();
   useEffect(() => {
     axios
       .get(url)
@@ -27,6 +28,17 @@ export default function SinglePostPage() {
       })
       .catch(console.warn);
   }, []);
+
+  function handleDelete() {
+    axios
+      .delete(url)
+      .then((resp) => console.log(resp))
+      .catch((error) => console.log('klaida: ', error));
+  }
+  function btnLogout() {
+    logout();
+    window.location.href = '/login';
+  }
 
   return (
     <div className={`container ${css.postContainer}`}>
@@ -54,6 +66,17 @@ export default function SinglePostPage() {
             ))}
           </div>
         </div>
+      </div>
+      <div className={css.postButtons}>
+        <NavLink onClick={logout} className={css.postBtn} to={'/login'}>
+          Logout
+        </NavLink>
+        <button onClick={btnLogout} className={css.postBtn}>
+          Logout
+        </button>
+        <NavLink onClick={handleDelete} className={css.postBtn} to={'/login'}>
+          DELETE
+        </NavLink>
       </div>
     </div>
   );
