@@ -17,7 +17,7 @@ export default function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/posts' element={<PostsPage />} />
         {/* vietoj penketo turi buti dinaminis posto id parametras */}
-        <Route path='/posts/5' element={<SinglePostPage />} />
+        <Route path='/posts/:postId' element={<SinglePostPage />} />
         {!isLoggedIn && <Route path='/login' element={<LoginPage />} />}
         <Route path='*' element={<NotFound />} />
       </Routes>

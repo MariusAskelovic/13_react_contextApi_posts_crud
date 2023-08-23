@@ -14,11 +14,11 @@ export default function Header() {
           <NavLink className={css.navLink} to={'/'}>
             Home
           </NavLink>
-          {isLoggedIn && (
-            <NavLink className={css.navLink} to={'/posts'}>
-              Posts
-            </NavLink>
-          )}
+          {/* {isLoggedIn && ( */}
+          <NavLink className={css.navLink} to={'/posts'}>
+            Posts
+          </NavLink>
+          {/* )} */}
           {!isLoggedIn && (
             <NavLink className={css.navLink} to={'/login'}>
               Login

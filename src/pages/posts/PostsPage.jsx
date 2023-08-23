@@ -34,7 +34,7 @@ export default function PostsPage() {
           // vietoj li generuoti SinglePostLink
           <li key={pObj.id}>
             {/* vietoj "5" paduoti posto id */}
-            <Link to={'/posts/5'}>{pObj.title}</Link>
+            <Link to={'/posts/' + pObj.id}>{pObj.title}</Link>
           </li>
         ))}
       </ul>
