@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // TODO: turetu buti config.js
 // TODO: use .env file
 const url = 'http://localhost:5000/posts';
@@ -9,25 +9,33 @@ export default function PostsPage() {
   const [postsArr, setPostsArr] = useState([]);
 
   useEffect(() => {
+    // parsisiusti
     axios
       .get(url)
       .then((resp) => {
-        console.log(resp.data);
+        console.log('resp ===', resp);
+        // irasyti i postsArr
         setPostsArr(resp.data);
       })
-      .catch(console.warn);
+      .catch((error) => {
+        console.warn('ivyko klaida:', error);
+      });
   }, []);
 
   return (
     <div className='container'>
-      <h2>PostsPage</h2>
+      <h1>PostsPage</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio
-        eveniet illum porro minima est vel corrupti! Nihil, sapiente odit.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+        corporis, reiciendis eius ipsa laborum sed!
       </p>
       <ul>
         {postsArr.map((pObj) => (
-          <li key={pObj.id}>{pObj.title}</li>
+          // vietoj li generuoti SinglePostLink
+          <li key={pObj.id}>
+            {/* vietoj "5" paduoti posto id */}
+            <Link to={'/posts/5'}>{pObj.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
