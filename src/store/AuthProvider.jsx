@@ -14,10 +14,31 @@ AuthContext.displayName = 'Auth';
 
 export default function AuthProvider(props) {
   const [token, setToken] = useState('');
+  const [email, setEmail] = useState('');
+
+  const isLoggedIn = !!token;
+
+  function login() {}
+
+  function logout() {}
 
   const ctx = {
-    token: 'aa',
+    token: token,
+    email: email,
+    login: login,
+    logout: logout,
+    isLoggedIn: isLoggedIn,
   };
+  // const ctx2 = {
+  //   token,
+  //   email,
+  //   login,
+  //   logout,
+  //   isLoggedIn,
+  // };
+  // ctx === ctx2, jeigu A = B galima rasyti viena zodi
+
+  ctx.login();
   return (
     <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>
   );
