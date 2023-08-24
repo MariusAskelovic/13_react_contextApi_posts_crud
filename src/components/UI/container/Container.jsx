@@ -1,4 +1,9 @@
 import css from './Container.module.css';
+
 export default function Container(props) {
-  return <div className={css.container}>{props.children}</div>;
+  const calculatedClass = props.className
+    ? `${props.className} ${css.container}`
+    : css.container;
+
+  return <div className={calculatedClass}>{props.children}</div>;
 }

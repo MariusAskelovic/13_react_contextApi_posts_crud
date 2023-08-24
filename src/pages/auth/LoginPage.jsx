@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../../components/form/LoginForm';
+import Container from '../../components/UI/container/Container';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -10,9 +11,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className='container'>
+    <Container>
       <h2>Login Here</h2>
       <LoginForm onSekme={handleSuccess} />
-    </div>
+    </Container>
   );
 }

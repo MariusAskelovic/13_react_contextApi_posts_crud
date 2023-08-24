@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Container from '../../components/UI/container/Container';
 // TODO: turetu buti config.js
 // TODO: use .env file
 const url = 'http://localhost:5000/posts';
@@ -23,7 +24,7 @@ export default function PostsPage() {
   }, []);
 
   return (
-    <div className='container'>
+    <Container>
       <h1>PostsPage</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
@@ -38,6 +39,6 @@ export default function PostsPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }

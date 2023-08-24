@@ -1,8 +1,10 @@
+import Container from '../components/UI/container/Container';
+
 export default function NotFound() {
   return (
-    <div className='container'>
+    <Container>
       <h2>404 page not found</h2>
       <p>check the link</p>
-    </div>
+    </Container>
   );
 }
