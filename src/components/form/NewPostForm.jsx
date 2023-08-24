@@ -3,17 +3,34 @@
 // klaidos su Yup (galim pradzioj nesidaryt)
 // sukurus nauja posta naviguosim i Posts
 
+import Btn from '../UI/btn/Btn';
 import Container from '../UI/container/Container';
 
 export default function NewPostForm() {
   return (
-    <Container>
-      <form>
-        <input type='text' placeholder='Title' />
-        <input type='text' placeholder='Author' />
-        <input type='date' placeholder='Author' />
-      </form>
-    </Container>
+    // <Container>
+    <form>
+      <div className='inputBlock'>
+        <input type='text' id='title' placeholder='Title' />
+      </div>
+      <div className='inputBlock'>
+        <input type='url' id='image' placeholder='Image url' />
+      </div>
+      <div className='inputBlock'>
+        <input type='text' id='author' placeholder='Author' />
+      </div>
+      <div className='inputBlock'>
+        <input type='text' id='tags' placeholder='Tags (comma separated)' />
+      </div>
+      <div className='inputBlock'>
+        <input type='date' id='date' />
+      </div>
+      <div className='inputBlock'>
+        <textarea id='body' placeholder='Enter text here'></textarea>
+      </div>
+      <Btn sub>Create</Btn>
+    </form>
+    // </Container>
   );
 }
 
