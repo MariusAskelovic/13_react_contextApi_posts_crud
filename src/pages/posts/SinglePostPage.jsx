@@ -35,6 +35,7 @@ export default function SinglePostPage() {
       .delete(url)
       .then((resp) => console.log(resp))
       .catch((error) => console.log('klaida: ', error));
+    navigate('/login');
   }
   function btnLogout() {
     logout();
@@ -79,7 +80,13 @@ export default function SinglePostPage() {
         <NavLink onClick={handleDelete} className={css.postBtn} to={'/login'}>
           DELETE
         </NavLink>
-        <button>DeleteBtn</button>
+        <button
+          onClick={() => {
+            handleDelete(params.postId);
+          }}
+        >
+          DeleteBtn
+        </button>
       </div>
     </div>
   );
