@@ -7,3 +7,7 @@
 // authorEmail uzpildom is prisijungusio vartotojo
 
 // gauti postId is SinglePost per props
+
+export default function AddComment() {
+  return <div>AddComment</div>;
+}
