@@ -86,3 +86,8 @@ button {
 .gap-2 {
   gap: 40px;
 }
+
+.unlisted {
+  list-style: none;
+  padding-left: 0;
+}
