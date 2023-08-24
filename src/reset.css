@@ -82,3 +82,7 @@ button {
   border: 1px solid #777;
   cursor: pointer;
 }
+
+.gap-2 {
+  gap: 40px;
+}

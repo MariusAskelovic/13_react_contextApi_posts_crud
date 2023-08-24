@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Container from '../../components/UI/container/Container';
 import SinglePostLink from '../../components/posts/SinglePostLink';
 // TODO: turetu buti config.js
