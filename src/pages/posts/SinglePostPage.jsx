@@ -1,7 +1,7 @@
 // cia mes graziai atvaizuosim visa info esancia posto objekte
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import css from './SinglePostPage.module.css';
 import { useAuth } from '../../store/AuthProvider';
 
@@ -13,6 +13,7 @@ export default function SinglePostPage() {
 
   const params = useParams();
   console.log('params ===', params);
+  const navigate = useNavigate();
   const url = 'http://localhost:5000/posts/' + params.postId;
   const [post, setPost] = useState({
     tags: [],
@@ -37,7 +38,8 @@ export default function SinglePostPage() {
   }
   function btnLogout() {
     logout();
-    window.location.href = '/login';
+    navigate('/login');
+    // window.location.href = '/login'; // NEGALIMA SU REACT
   }
 
   return (
@@ -72,11 +74,12 @@ export default function SinglePostPage() {
           Logout
         </NavLink>
         <button onClick={btnLogout} className={css.postBtn}>
-          Logout
+          LogoutBtn
         </button>
         <NavLink onClick={handleDelete} className={css.postBtn} to={'/login'}>
           DELETE
         </NavLink>
+        <button>DeleteBtn</button>
       </div>
     </div>
   );
