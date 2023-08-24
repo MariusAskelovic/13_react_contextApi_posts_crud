@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import Btn from '../../components/UI/btn/Btn';
 import AddComment from '../../components/comments/AddComment';
 import CommentsList from '../../components/comments/CommentsList';
+import config from '../../config';
 
 export default function SinglePostPage() {
   const { postId } = useParams();
   const [currentPost, setCurrentPost] = useState({});
-  const url = 'http://localhost:5000/posts';
+  const url = config.postUrl;
   const currentPostUrl = `${url}/${postId}`;
   const navigate = useNavigate();
   useEffect(() => {

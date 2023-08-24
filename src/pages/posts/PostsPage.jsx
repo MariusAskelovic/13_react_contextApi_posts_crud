@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Container from '../../components/UI/container/Container';
 import SinglePostLink from '../../components/posts/SinglePostLink';
+import config from '../../config';
 // TODO: turetu buti config.js
 // TODO: use .env file
-const url = 'http://localhost:5000/posts';
-
+const url = config.postUrl;
 export default function PostsPage() {
   const [postsArr, setPostsArr] = useState([]);
 

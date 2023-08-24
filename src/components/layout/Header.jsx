@@ -2,10 +2,12 @@ import { Link, NavLink } from 'react-router-dom';
 import css from './Header.module.css';
 import { useAuth } from '../../store/AuthProvider';
 import Container from '../UI/container/Container';
+import config from '../../config';
 
 export default function Header() {
   const { isLoggedIn, logout } = useAuth();
-  const logoName = import.meta.env.VITE_SITE_NAME;
+  // const logoName = import.meta.env.VITE_SITE_NAME;
+  const logoName = config.siteName;
   return (
     <header className={css.wrap}>
       {/* <div className={`container ${css.flex}`}> */}
