@@ -21,6 +21,11 @@ export default function Header() {
               Posts
             </NavLink>
           )}
+          {isLoggedIn && (
+            <NavLink className={css.navLink} to={'/add-post'}>
+              Add Post
+            </NavLink>
+          )}
           {!isLoggedIn && (
             <NavLink className={css.navLink} to={'/login'}>
               Login

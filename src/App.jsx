@@ -7,6 +7,7 @@ import { useAuth } from './store/AuthProvider';
 import LoginPage from './pages/auth/LoginPage';
 import NotFound from './pages/NotFound';
 import SinglePostPage from './pages/posts/SinglePostPage';
+import AddPostPage from './pages/posts/AddPostPage';
 
 export default function App() {
   const { isLoggedIn } = useAuth();
@@ -18,6 +19,7 @@ export default function App() {
         <Route path='/posts' element={<PostsPage />} />
         {/* vietoj penketo turi buti dinaminis posto id parametras */}
         <Route path='/posts/:postId' element={<SinglePostPage />} />
+        <Route path='/add-post' element={<AddPostPage />} />
         {!isLoggedIn && <Route path='/login' element={<LoginPage />} />}
         <Route path='*' element={<NotFound />} />
       </Routes>

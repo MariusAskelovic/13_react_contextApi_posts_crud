@@ -25,7 +25,7 @@ export default function SinglePostPage() {
   // parsisiusti su axios konkretu posta
   // 3083126839342818 yra posto id
   // http://localhost:5000/posts/3083126839342818
-  const { title, body, author, tags } = currentPost;
+  const { title, body, author, tags, date } = currentPost;
 
   function handlePostDelete() {
     console.log('handlePostDelete');
@@ -45,6 +45,7 @@ export default function SinglePostPage() {
     <Container>
       <h1>{title}</h1>
       <p>{body}</p>
+      <p>{date}</p>
       <p className='author'>By: {author}</p>
       <h4>Tags:</h4>
       <ul className='unlisted flex gap-2'>
