@@ -12,8 +12,11 @@ export const AuthContext = createContext({
 AuthContext.displayName = 'Auth';
 
 export default function AuthProvider(props) {
-  const [token, setToken] = useState('');
-  const [email, setEmail] = useState('');
+  const initToken = localStorage.getItem('token');
+  const initEmail = localStorage.getItem('email');
+
+  const [token, setToken] = useState(initToken);
+  const [email, setEmail] = useState(initEmail);
 
   const isLoggedIn = !!token;
   // const isLoggedIn = true;
@@ -21,11 +24,15 @@ export default function AuthProvider(props) {
   function login(gotEmail, gotToken) {
     setToken(gotToken);
     setEmail(gotEmail);
+    localStorage.setItem('token', gotToken);
+    localStorage.setItem('email', gotEmail);
   }
 
   function logout() {
     setEmail('');
     setToken('');
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
   }
 
   const ctx = {
