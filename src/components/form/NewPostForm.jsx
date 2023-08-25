@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import config from '../../config';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /*
 {
@@ -24,6 +25,7 @@ const url = config.postUrl;
 
 export default function NewPostForm() {
   const [errorsArr, setErrorsArr] = useState([]);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       image: '',
@@ -35,7 +37,11 @@ export default function NewPostForm() {
     },
     onSubmit: (values) => {
       //   console.log('form submit values ===', values);
-      const tagsArr = values.tags.split(',').map((obj) => obj.trim());
+      const tagsArr = values.tags
+        .split(',')
+        .map((obj) => obj.trim())
+        // .filter((strEl) => strEl !== '');
+        .filter((strEl) => strEl);
       //   console.log('tagsArr ===', tagsArr);
       const newArr = {
         image: values.image,
@@ -56,7 +62,10 @@ export default function NewPostForm() {
       .then((resp) => {
         console.log('resp ===', resp);
         console.log('newPostObj ===', newPostObj);
-        setErrorsArr([]);
+        // setErrorsArr([]);
+        if (resp.status === 200) {
+          navigate('/posts', { replace: true });
+        }
       })
       .catch((error) => {
         console.log('ivyko klaida:', error.response.data.error);

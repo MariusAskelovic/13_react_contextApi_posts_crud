@@ -16,10 +16,11 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/posts' element={<PostsPage />} />
-        {/* vietoj penketo turi buti dinaminis posto id parametras */}
-        <Route path='/posts/:postId' element={<SinglePostPage />} />
-        <Route path='/add-post' element={<AddPostPage />} />
+        {isLoggedIn && <Route path='/posts' element={<PostsPage />} />}
+        {isLoggedIn && (
+          <Route path='/posts/:postId' element={<SinglePostPage />} />
+        )}
+        {isLoggedIn && <Route path='/add-post' element={<AddPostPage />} />}
         {!isLoggedIn && <Route path='/login' element={<LoginPage />} />}
         <Route path='*' element={<NotFound />} />
       </Routes>

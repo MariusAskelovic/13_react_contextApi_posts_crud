@@ -8,6 +8,7 @@ export default function Header() {
   const { isLoggedIn, logout } = useAuth();
   // const logoName = import.meta.env.VITE_SITE_NAME;
   const logoName = config.siteName;
+
   return (
     <header className={css.wrap}>
       {/* <div className={`container ${css.flex}`}> */}

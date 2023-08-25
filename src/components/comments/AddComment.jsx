@@ -27,6 +27,7 @@ export default function AddComment() {
     initialValues: {
       id: '',
       authorEmail: ctx.email,
+      //   authorEmail: '',
       text: '',
       postId: params,
     },
@@ -56,6 +57,7 @@ export default function AddComment() {
             value={formik.values.authorEmail}
             placeholder='your email'
             id='authorEmail'
+            onChange={formik.handleChange}
           />
           <textarea
             placeholder='enter comment here'

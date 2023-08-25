@@ -7,6 +7,7 @@ import Btn from '../../components/UI/btn/Btn';
 import AddComment from '../../components/comments/AddComment';
 import CommentsList from '../../components/comments/CommentsList';
 import config from '../../config';
+import noImageImage from '../../assets/no-image.jpg';
 
 export default function SinglePostPage() {
   const { postId } = useParams();
@@ -38,7 +39,7 @@ export default function SinglePostPage() {
   // parsisiusti su axios konkretu posta
   // 3083126839342818 yra posto id
   // http://localhost:5000/posts/3083126839342818
-  const { title, body, author, tags, date, id } = currentPost;
+  const { title, body, author, tags, date, id, image } = currentPost;
 
   function handlePostDelete() {
     console.log('handlePostDelete');
@@ -56,8 +57,11 @@ export default function SinglePostPage() {
   // const getId = id;
   // console.log('commentsArr ===', commentsArr);
   // const arrayX = commentsArr.filter((obj) => obj.postId === getId);
+  // let imageLink = image ? image : noImageImage;
+
   return (
     <Container>
+      <img src={image} alt={title} />
       <h1>{title}</h1>
       <p>{body}</p>
       <p>{date}</p>
