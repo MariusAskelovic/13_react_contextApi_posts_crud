@@ -1,6 +1,9 @@
 import css from './NewPostForm.module.css';
 import Btn from '../UI/btn/Btn';
 import { useFormik } from 'formik';
+import config from '../../config';
+import axios from 'axios';
+import { useState } from 'react';
 
 /*
 {
@@ -17,7 +20,10 @@ import { useFormik } from 'formik';
 }
 */
 
+const url = config.postUrl;
+
 export default function NewPostForm() {
+  const [errorsArr, setErrorsArr] = useState([]);
   const formik = useFormik({
     initialValues: {
       image: '',
@@ -28,9 +34,41 @@ export default function NewPostForm() {
       date: '',
     },
     onSubmit: (values) => {
-      console.log('form submit values ===', values);
+      //   console.log('form submit values ===', values);
+      const tagsArr = values.tags.split(',').map((obj) => obj.trim());
+      //   console.log('tagsArr ===', tagsArr);
+      const newArr = {
+        image: values.image,
+        title: values.title,
+        body: values.body,
+        author: values.author,
+        tags: tagsArr,
+        date: values.date,
+      };
+      console.log('newArr ===', newArr);
+      sendNewPostData(newArr);
     },
   });
+
+  function sendNewPostData(newPostObj) {
+    axios
+      .post(url, newPostObj)
+      .then((resp) => {
+        console.log('resp ===', resp);
+        console.log('newPostObj ===', newPostObj);
+        setErrorsArr([]);
+      })
+      .catch((error) => {
+        console.log('ivyko klaida:', error.response.data.error);
+        const errorArr = error.response.data.error;
+        setErrorsArr(errorArr);
+      });
+  }
+  function handleErrorsArr(field) {
+    const errorObj = errorsArr.find((obj) => obj.field === field);
+    return errorObj ? errorObj.message : '';
+  }
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className={css.form}>
@@ -42,6 +80,7 @@ export default function NewPostForm() {
             id='title'
             placeholder='Title'
           />
+          <p>{handleErrorsArr('title')}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -51,6 +90,7 @@ export default function NewPostForm() {
             id='image'
             placeholder='Image url'
           />
+          <p>{handleErrorsArr('image')}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -60,6 +100,7 @@ export default function NewPostForm() {
             id='author'
             placeholder='Author'
           />
+          <p>{handleErrorsArr('author')}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -69,6 +110,7 @@ export default function NewPostForm() {
             id='tags'
             placeholder='Tags (comma separated)'
           />
+          <p>{handleErrorsArr('tags')}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -77,6 +119,7 @@ export default function NewPostForm() {
             type='date'
             id='date'
           />
+          <p>{handleErrorsArr('date')}</p>
         </div>
         <div className='inputBlock'>
           <textarea
@@ -85,6 +128,7 @@ export default function NewPostForm() {
             id='body'
             placeholder='Enter text here'
           ></textarea>
+          <p>{handleErrorsArr('body')}</p>
         </div>
         <Btn sub>Create</Btn>
       </form>

@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.inputs {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.inputs * {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: 2px dashed #000;
+}

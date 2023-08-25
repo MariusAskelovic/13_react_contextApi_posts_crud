@@ -11,6 +11,8 @@ import config from '../../config';
 export default function SinglePostPage() {
   const { postId } = useParams();
   const [currentPost, setCurrentPost] = useState({});
+  // const [commentsArr, setCommentsArr] = useState([]);
+  // const commentUrl = config.commentsUrl;
   const url = config.postUrl;
   const currentPostUrl = `${url}/${postId}`;
   const navigate = useNavigate();
@@ -21,12 +23,22 @@ export default function SinglePostPage() {
         setCurrentPost(data);
       })
       .catch(console.warn);
+    // axios
+    //   .get(commentUrl)
+    //   .then((resp) => {
+    //     const commentPath = resp.data;
+    //     console.log('commentPath ===', commentPath);
+    //     setCommentsArr(resp.data);
+    //   })
+    //   .catch((error) => {
+    //     console.warn('ivyko klaida:', error);
+    //   });
   }, []);
   // pasiimti dinamine adreso dali (parametra) tai yra post id
   // parsisiusti su axios konkretu posta
   // 3083126839342818 yra posto id
   // http://localhost:5000/posts/3083126839342818
-  const { title, body, author, tags, date } = currentPost;
+  const { title, body, author, tags, date, id } = currentPost;
 
   function handlePostDelete() {
     console.log('handlePostDelete');
@@ -41,7 +53,9 @@ export default function SinglePostPage() {
       .catch(console.warn);
     navigate('/posts', { replace: true });
   }
-
+  // const getId = id;
+  // console.log('commentsArr ===', commentsArr);
+  // const arrayX = commentsArr.filter((obj) => obj.postId === getId);
   return (
     <Container>
       <h1>{title}</h1>
@@ -61,7 +75,12 @@ export default function SinglePostPage() {
       <hr />
       <div>
         <AddComment />
-        <CommentsList />
+        <CommentsList id={id} />
+        {/* <ul>
+          {arrayX.map((obj) => (
+            <li key={obj.postId}>{obj.text}</li>
+          ))}
+        </ul> */}
       </div>
     </Container>
   );
