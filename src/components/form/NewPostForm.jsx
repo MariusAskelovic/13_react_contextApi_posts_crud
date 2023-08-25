@@ -68,9 +68,15 @@ export default function NewPostForm() {
         }
       })
       .catch((error) => {
-        console.log('ivyko klaida:', error.response.data.error);
+        console.log(
+          'ivyko klaida:',
+          JSON.stringify(error.response.data.error, 2)
+        );
         const errorArr = error.response.data.error;
         setErrorsArr(errorArr);
+        errorArr.forEach((errObj) =>
+          formik.setFieldError(errObj.field, errObj.message)
+        );
       });
   }
   function handleErrorsArr(field) {
@@ -90,6 +96,7 @@ export default function NewPostForm() {
             placeholder='Title'
           />
           <p>{handleErrorsArr('title')}</p>
+          <p>{formik.errors.title}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -100,6 +107,7 @@ export default function NewPostForm() {
             placeholder='Image url'
           />
           <p>{handleErrorsArr('image')}</p>
+          <p>{formik.errors.image}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -110,6 +118,7 @@ export default function NewPostForm() {
             placeholder='Author'
           />
           <p>{handleErrorsArr('author')}</p>
+          <p>{formik.errors.author}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -120,6 +129,7 @@ export default function NewPostForm() {
             placeholder='Tags (comma separated)'
           />
           <p>{handleErrorsArr('tags')}</p>
+          <p>{formik.errors.tags}</p>
         </div>
         <div className='inputBlock'>
           <input
@@ -129,6 +139,7 @@ export default function NewPostForm() {
             id='date'
           />
           <p>{handleErrorsArr('date')}</p>
+          <p>{formik.errors.date}</p>
         </div>
         <div className='inputBlock'>
           <textarea
@@ -138,6 +149,7 @@ export default function NewPostForm() {
             placeholder='Enter text here'
           ></textarea>
           <p>{handleErrorsArr('body')}</p>
+          <p>{formik.errors.body}</p>
         </div>
         <Btn sub>Create</Btn>
       </form>
